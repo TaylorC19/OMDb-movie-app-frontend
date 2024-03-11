@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const cookies = new Cookies();
 const api: AxiosInstance = axios.create({
-  baseURL: process.env.BACKEND_SERVER,
+  baseURL: process.env.REACT_APP_BACKEND_URL,
 });
 
 export const getToken = async () => {
