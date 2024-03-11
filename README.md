@@ -1,3 +1,7 @@
+## Description
+
+This is a React frontend application. You can find the backend [here](https://github.com/TaylorC19/inbound-platform-assignment-backend). This application allows you to search through a library of media content through the OMDb api, and you can create an account to save your favorites!
+
 ## Available Scripts
 
 In the project directory, you can run:
