@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 import { FaHeart, FaSearch, FaHome } from "react-icons/fa";
-import { IoIosLogOut } from "react-icons/io";
+import { IoIosLogIn, IoIosLogOut, IoMdCreate } from "react-icons/io";
 
 const Header = () => {
   const { user, logOut } = UserAuth();
@@ -45,19 +45,28 @@ const Header = () => {
               <span>Favorites</span>
             </button>
             <button onClick={handleLogOut}>
-              <IoIosLogOut
-                className="mx-auto"
-                style={{ fontSize: "24px" }}
-              />
+              <IoIosLogOut className="mx-auto" style={{ fontSize: "24px" }} />
               <span>Log Out</span>
             </button>
           </div>
         ) : (
-          <div className="flex gap-1 text-white">
-            <button onClick={() => navigate("/")}>Home</button>
-            <button onClick={() => navigate("/public-recipes")}>Search</button>
-            <button onClick={() => navigate("/auth/login")}>Log In</button>
-            <button onClick={() => navigate("/auth/signup")}>Sign Up</button>
+          <div className="flex gap-4 text-white">
+            <button onClick={() => navigate("/")}>
+              <FaHome className="mx-auto" style={{ fontSize: "24px" }} />
+              <span>Home</span>
+            </button>
+            <button onClick={() => navigate("/search")}>
+              <FaSearch className="mx-auto" style={{ fontSize: "24px" }} />
+              <span>Search</span>
+            </button>
+            <button onClick={() => navigate("/auth/login")}>
+              <IoIosLogIn className="mx-auto" style={{ fontSize: "24px" }} />
+              <span>Log In</span>
+            </button>
+            <button onClick={() => navigate("/auth/signup")}>
+              <IoMdCreate className="mx-auto" style={{ fontSize: "24px" }} />
+              <span>Sign Up</span>
+            </button>
           </div>
         )}
       </nav>
