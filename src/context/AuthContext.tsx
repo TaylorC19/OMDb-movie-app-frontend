@@ -26,50 +26,53 @@ export const AuthContextProvider: React.FC<{ children: ReactNode }> = ({ childre
 
   useEffect(() => {
     const cookies = new Cookies();
-    const token: string = cookies.get('access_token');
+    const token: string = cookies.get("access_token");
 
     if (token) {
-      token.replace('Bearer ', '');
-  
-      const decode = jwtDecode<JwtPayload>(token);
-      return setUser(decode);
-    }
-    return setUser({});
-  }, [user]);
+      token.replace("Bearer ", "");
 
-  const createUser = async (username: string, email: string, password:string) => {
-    const data = {username, password, email};
-    const newUser = await utils.requests.post(
-      '/auth/signup',
-      data
-    );
-    utils.helpers.setToken(newUser.data.access_token);
+      const decode = jwtDecode<JwtPayload>(token);
+      setUser(decode);
+    } else {
+      setUser({});
+    }
+  }, []); 
+
+  const createUser = async (
+    username: string,
+    email: string,
+    password: string
+  ) => {
+    const data = { username, password, email };
+    const newUser = await utils.requests.post("/auth/signup", data);
+    const access_token = newUser.data.access_token;
+    utils.helpers.setToken(access_token);
+    const decode = jwtDecode<JwtPayload>(access_token);
+    setUser(decode);
 
     return newUser;
-    }
-    
-  const loginUser = async (username: string, password: string) => {
-    const data = {username, password};
-    const userCred = await utils.requests.post(
-      '/auth/login',
-      data
-    );
+  };
 
-    utils.helpers.setToken(userCred.data.access_token);
-    
+  const loginUser = async (username: string, password: string) => {
+    const data = { username, password };
+    const userCred = await utils.requests.post("/auth/login", data);
+    const access_token = userCred.data.access_token;
+    utils.helpers.setToken(access_token);
+
+    const decode = jwtDecode<JwtPayload>(access_token);
+    setUser(decode);
+
     return userCred;
   };
 
-  const logOut =  () => {
+  const logOut = () => {
     utils.helpers.deleteToken();
     setUser({});
     return;
   };
 
   return (
-    <UserContext.Provider
-      value={{ createUser, loginUser, logOut, user }}
-    >
+    <UserContext.Provider value={{ createUser, loginUser, logOut, user }}>
       {children}
     </UserContext.Provider>
   );
