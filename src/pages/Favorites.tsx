@@ -6,7 +6,9 @@ const Favorites = () => {
   return (
     <div>
       <Header />
-      <FaHeart style={{ color: "red", fontSize: "24px" }} />
+      <h1 className="text-3xl font-bold flex">
+        Favorites <FaHeart style={{ color: "red" }} />
+      </h1>
     </div>
   );
 };
