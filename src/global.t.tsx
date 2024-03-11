@@ -20,7 +20,7 @@ export interface singleMovieType {
   Poster: string;
   Ratings: Rating[];
   Metascore: string;
-  imdb_id: string;
+  imdbID: string;
   imdbRating: string;
   imdbVotes: string;
   Type: string;
@@ -33,10 +33,15 @@ export interface singleMovieType {
 
 export interface searchMovieType {
   Title: string;
+  title: string;
   Year: string;
+  year: string;
   imdbID: string;
-  Type: string;
-  Poster: string;
+  imdb_id: string;
+  Type?: string;
+  Poster?: string;
+  poster?: string;
+  index?: number;
 } 
 
 export interface searchResultsType {
