@@ -35,7 +35,7 @@ export const AuthContextProvider: React.FC<{ children: ReactNode }> = ({ childre
       return setUser(decode);
     }
     return setUser({});
-  }, []);
+  }, [user]);
 
   const createUser = async (username: string, email: string, password:string) => {
     const data = {username, password, email};
@@ -61,7 +61,9 @@ export const AuthContextProvider: React.FC<{ children: ReactNode }> = ({ childre
   };
 
   const logOut =  () => {
-    return utils.helpers.deleteToken();
+    utils.helpers.deleteToken();
+    setUser({});
+    return;
   };
 
   return (

@@ -24,7 +24,6 @@ const Auth = ({ isSignIn }: Props) => {
     e.preventDefault();
     // form
     try {
-      console.log(username, password)
       await loginUser(username, password);
       navigate('/')
     } catch (err) {
@@ -50,38 +49,41 @@ const Auth = ({ isSignIn }: Props) => {
   };
 
   return (
-    <div className="bg-white h-96 mx-auto w-[90%] sm:w-[50%] mt-10 border-2 border-black rounded-xl shadow-md font-sans">
+    <div className="">
       <Header></Header>
-      {isSignIn ? (
-        <p className="text-black mt-9 mb-0 text-large">Welcome Back!</p>
-      ) : (
-        <p className="text-black mt-9 mb-0 text-large">
-          Do not have an account? Sign Up!
-        </p>
-      )}
-
-      <form onSubmit={isSignIn ? handleSubmit : handleSignUp}>
-        {!isSignIn && (
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            id="email"
-            className="w-[80%] h-9 mt-7 mx-auto border-b-2 border-b-slate-500 text-black focus:outline-none"
-            onChange={(e) => setEmail(e.target.value)}
-          />
+      <div className="flex flex-wrap flex-col mx-auto content-center">
+        {isSignIn ? (
+          <p className="text-black mt-9 mb-0 text-large">Welcome Back!</p>
+        ) : (
+          <p className="text-black mt-9 mb-0 text-large">
+            Do not have an account? Sign Up!
+          </p>
         )}
 
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          id="username"
-          className="w-[80%] h-9 mt-7 mx-auto border-b-2 border-b-slate-500 text-black focus:outline-none"
-          onChange={(e) => setUsername(e.target.value)}
-        />
+        <form
+          onSubmit={isSignIn ? handleSubmit : handleSignUp}
+          className="flex flex-col"
+        >
+          {!isSignIn && (
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              id="email"
+              className="w-[80%] h-9 mt-7 mx-auto border-b-2 border-b-slate-500 text-black focus:outline-none"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          )}
 
-        <div>
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            id="username"
+            className="w-[80%] h-9 mt-7 mx-auto border-b-2 border-b-slate-500 text-black focus:outline-none"
+            onChange={(e) => setUsername(e.target.value)}
+          />
+
           <input
             type="password"
             placeholder="Password"
@@ -90,22 +92,32 @@ const Auth = ({ isSignIn }: Props) => {
             className="w-[80%] h-9 mt-7 mx-auto border-b-2 border-b-slate-500 text-black focus:outline-none"
             onChange={(e) => setPassword(e.target.value)}
           />
-        </div>
 
-        {isSignIn ? (
-          <>
-            <button type="submit">Sign In</button>
-            <p className="text-blue-600 mt-6">
-              Do not have an account? Sign-up here!
-            </p>
-          </>
-        ) : (
-          <>
-            <button type="submit">Sign Up</button>
-            <p className="text-blue-600 mt-6">Already a user? Sign-in!</p>
-          </>
-        )}
-      </form>
+          {isSignIn ? (
+            <>
+              <button
+                type="submit"
+                className="h-11 font-xl mt-8 bg-blue-600 text-white p-1 rounded mx-auto"
+              >
+                Sign In
+              </button>
+              <p className="text-blue-600 mt-6">
+                Do not have an account? Sign-up here!
+              </p>
+            </>
+          ) : (
+            <>
+              <button
+                type="submit"
+                className="h-11 font-xl mt-8 bg-blue-600 text-white p-1 rounded mx-auto"
+              >
+                Sign Up
+              </button>
+              <p className="text-blue-600 mt-6">Already a user? Sign-in!</p>
+            </>
+          )}
+        </form>
+      </div>
     </div>
   );
 };
