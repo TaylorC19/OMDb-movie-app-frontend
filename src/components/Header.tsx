@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
-import { FaHeart } from "react-icons/fa";
+import { FaHeart, FaSearch } from "react-icons/fa";
 
 
 const Header = () => {
@@ -27,7 +27,15 @@ const Header = () => {
         {Object.keys(user).length !== 0 ? (
           <div className="flex gap-1 text-white">
             <button onClick={() => navigate("/")}>Home</button>
-            <button onClick={() => navigate("/search")}>Search</button>
+            <button 
+              onClick={() => navigate("/search")}
+            >
+              <FaSearch 
+                className="mx-auto" 
+                style={{ fontSize: "24px" }}
+              />
+              <span>Search</span>
+            </button>
             <button 
               className="flex flex-col flex-wrap content-center"
               onClick={() => navigate("/favorite")}
